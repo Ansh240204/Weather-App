@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+<head>
+    <title>Contact Us</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div ng-controller="ContactController as contactCtrl">
+    <h1>Contact Us</h1>
+    
+    <form ng-submit="contactCtrl.submitForm()">
+        <label>Name:</label>
+        <input type="text" ng-model="contactCtrl.formData.name" required><br>
+        
+        <label>Email:</label>
+        <input type="email" ng-model="contactCtrl.formData.email" required><br>
+        
+        <label>Message:</label>
+        <textarea ng-model="contactCtrl.formData.message" required></textarea><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div ng-show="contactCtrl.formSubmitted">
+        <h2>Thank you for contacting us!</h2>
+        <p>We'll get back to you as soon as possible.</p>
+    </div>
+</div>
+
+<script>
+    angular.module('contactApp', [])
+        .controller('ContactController', function () {
+            var vm = this;
+            vm.formData = {};
+            vm.formSubmitted = false;
+            
+            vm.submitForm = function () {
+                vm.formSubmitted = true;
+            };
+        });
+</script>
+
+</body>
+</html>
